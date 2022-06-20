@@ -26,7 +26,7 @@ const GroupFormed = () => {
     useEffect(() => {
         dispatch(GroupFormedAction());
         console.log(groups.length);
-        setG(GroupFormedData);
+        setG([...groups, GroupFormedData]);
         console.log(groups.length);
         console.log(groups);
         setk(groups.length);
@@ -41,7 +41,7 @@ const GroupFormed = () => {
         data.append('group', g);
         var config = {
             method: 'post',
-            url: 'http://omshukla.pythonanywhere.com​/dashboard/groupreq/',
+            url: "http://omshukla.pythonanywhere.com/dashboard/groupreq/",
             headers: {
                 ...data.getHeaders()
             },
@@ -63,11 +63,11 @@ const GroupFormed = () => {
             <Grid spacing={{ xs: 2, md: 3 }} container className='GroupMain'>
                 {loading ? <div>No Groups Available</div>
                     :
-                    GroupFormedData.map((x) => {
+                    groups.map((x) => {
                         return <Grid item key={x.group_id} xs={12} sm={6} md={3} className='innerGroupGrid'>
                             <Card >
                                 <center>
-                                    <img width='100' height='100' src={x.group_picture} alt='random'></img>
+                                    {/* <img width='100' height='100' src={x.group_picture} alt='random'></img> */}
                                 </center>
                             </Card>
                             <h2>{x.group_name} ({x.group_members})</h2>
